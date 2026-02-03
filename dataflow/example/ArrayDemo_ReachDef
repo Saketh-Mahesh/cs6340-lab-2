@@ -1,0 +1,217 @@
+Running ReachDef on main
+Instruction:   %1 = alloca i32, align 4
+In set: 
+[]
+Out set: 
+[  %1 = alloca i32, align 4; ]
+
+Instruction:   %2 = alloca [10 x i32], align 16
+In set: 
+[  %1 = alloca i32, align 4; ]
+Out set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16; ]
+
+Instruction:   %3 = alloca i32, align 4
+In set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16; ]
+Out set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4; ]
+
+Instruction:   %4 = alloca i32, align 4
+In set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4; ]
+Out set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4;   %4 = alloca i32, align 4; ]
+
+Instruction:   store i32 0, i32* %1, align 4
+In set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4;   %4 = alloca i32, align 4; ]
+Out set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4;   %4 = alloca i32, align 4; ]
+
+Instruction:   store i32 0, i32* %3, align 4
+In set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4;   %4 = alloca i32, align 4; ]
+Out set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4;   %4 = alloca i32, align 4; ]
+
+Instruction:   br label %5
+In set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4;   %4 = alloca i32, align 4; ]
+Out set: 
+[  %1 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %3 = alloca i32, align 4;   %4 = alloca i32, align 4; ]
+
+Instruction:   %6 = load i32, i32* %3, align 4
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %7 = icmp slt i32 %6, 10
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   br i1 %7, label %8, label %18
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %9 = load i32, i32* %3, align 4
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %10 = load i32, i32* %3, align 4
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %11 = mul nsw i32 %9, %10
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %12 = load i32, i32* %3, align 4
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %13 = sext i32 %12 to i64
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   store i32 %11, i32* %14, align 4
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   br label %15
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %16 = load i32, i32* %3, align 4
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %17 = add nsw i32 %16, 1
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   store i32 %17, i32* %3, align 4
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   br label %5
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   store i32 0, i32* %4, align 4
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   br label %19
+In set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %20 = load i32, i32* %4, align 4
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %21 = icmp slt i32 %20, 10
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   br i1 %21, label %22, label %28
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %23 = load i32, i32* %4, align 4
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23)
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   br label %25
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %26 = load i32, i32* %4, align 4
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %27 = add nsw i32 %26, 1
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   store i32 %27, i32* %4, align 4
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   br label %19
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+
+Instruction:   %29 = load i32, i32* %1, align 4
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4;   %29 = load i32, i32* %1, align 4; ]
+
+Instruction:   ret i32 %29
+In set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4;   %29 = load i32, i32* %1, align 4; ]
+Out set: 
+[  %21 = icmp slt i32 %20, 10;   %23 = load i32, i32* %4, align 4;   %24 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i32 0, i32 0), i32 %23);   %26 = load i32, i32* %4, align 4;   %27 = add nsw i32 %26, 1;   %20 = load i32, i32* %4, align 4;   %7 = icmp slt i32 %6, 10;   %9 = load i32, i32* %3, align 4;   %10 = load i32, i32* %3, align 4;   %11 = mul nsw i32 %9, %10;   %12 = load i32, i32* %3, align 4;   %13 = sext i32 %12 to i64;   %14 = getelementptr inbounds [10 x i32], [10 x i32]* %2, i64 0, i64 %13;   %16 = load i32, i32* %3, align 4;   %17 = add nsw i32 %16, 1;   %6 = load i32, i32* %3, align 4;   %4 = alloca i32, align 4;   %3 = alloca i32, align 4;   %2 = alloca [10 x i32], align 16;   %1 = alloca i32, align 4;   %29 = load i32, i32* %1, align 4; ]
+
