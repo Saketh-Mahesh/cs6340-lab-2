@@ -12,14 +12,14 @@
  * or edited. Removing it will be considered an academic integrity issue.
  *
  * We do grant permission to share solutions privately with non-students such
- * as potential employers as long as this header remains in full. However, 
+ * as potential employers as long as this header remains in full. However,
  * sharing with other current or future students or using a medium to share
- * where the code is widely available on the internet is prohibited and 
+ * where the code is widely available on the internet is prohibited and
  * subject to being investigated as a GT honor code violation.
- * Please respect the intellectual ownership of the course materials 
- * (including exam keys, project requirements, etc.) and do not distribute them 
- * to anyone not enrolled in the class. Use of any previous semester course 
- * materials, such as tests, quizzes, homework, projects, videos, and any other 
+ * Please respect the intellectual ownership of the course materials
+ * (including exam keys, project requirements, etc.) and do not distribute them
+ * to anyone not enrolled in the class. Use of any previous semester course
+ * materials, such as tests, quizzes, homework, projects, videos, and any other
  * coursework, is prohibited in this course. */
 
 #include "AnalysisStrategy.h"
@@ -31,9 +31,21 @@ namespace dataflow {
 		* Implement the Chaotic Iteration Algorithm here.  This should be a generic framework for running
 		* the chaotic iteration algorithm with any AnalysisStrategy.
 		* You may access any public method on the provided AnalysisStrategy or Function, but you
-		* should not modify any properties in those classes (treat everything as read-only) 
+		* should not modify any properties in those classes (treat everything as read-only)
 		*/
 		void run(AnalysisStrategy* analysisStrategy, Function &F) {
+			while (true) {
+				bool is_changed = false;
+				for (inst_iterator I = inst_begin(F), E= inst_end(F); I != E; ++I){
+					EvaluationResult result = analysisStrategy->evaluate(&(*I));
+					if (result == Unmodified) {
+						break;
+					}
+					else {
+						is_changed = true;
+					}
+				}
+			}
 		}
 	};
 }
