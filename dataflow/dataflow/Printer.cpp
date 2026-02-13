@@ -12,14 +12,14 @@
  * or edited. Removing it will be considered an academic integrity issue.
  *
  * We do grant permission to share solutions privately with non-students such
- * as potential employers as long as this header remains in full. However, 
+ * as potential employers as long as this header remains in full. However,
  * sharing with other current or future students or using a medium to share
- * where the code is widely available on the internet is prohibited and 
+ * where the code is widely available on the internet is prohibited and
  * subject to being investigated as a GT honor code violation.
- * Please respect the intellectual ownership of the course materials 
- * (including exam keys, project requirements, etc.) and do not distribute them 
- * to anyone not enrolled in the class. Use of any previous semester course 
- * materials, such as tests, quizzes, homework, projects, videos, and any other 
+ * Please respect the intellectual ownership of the course materials
+ * (including exam keys, project requirements, etc.) and do not distribute them
+ * to anyone not enrolled in the class. Use of any previous semester course
+ * materials, such as tests, quizzes, homework, projects, videos, and any other
  * coursework, is prohibited in this course. */
 
 #include "Utils.h"
@@ -28,20 +28,20 @@ namespace dataflow{
 	struct Printer: public FunctionPass {
 		static char ID;
 		Printer() : FunctionPass(ID){}
-		
+
 	protected:
 
 		/**
-	 	 * Print information about each instruction in each function. 
+	 	 * Print information about each instruction in each function.
 		 */
 		bool runOnFunction(Function &F) override {
 			errs() << "Print information about instructions in " << F.getName() << "\n";
 			for (inst_iterator I = inst_begin(F), E = inst_end(F); I != E; ++I){
-				errs() << "Instruction: " << *I << "\n"; 
+				errs() << "Instruction: " << *I << "\n";
 				errs() << "Def set: [";
 				if (isDef(&(*I))){
-					errs() << *I;	
-				} 	
+					errs() << *I;
+				}
 				errs() << "]\n";
 				errs() << "Use set: [";
 				// Get values used in the instruction.
@@ -50,10 +50,10 @@ namespace dataflow{
 					// Check if Value v is a local variable.
 					if(isa<Instruction>(v))
 						errs() << *v << ", ";
-				}	
+				}
 				errs() << "]\n";
 				errs() << "Predecessors: [";
-				for(Instruction* P : getPredecessors(&(*I))) 
+				for(Instruction* P : getPredecessors(&(*I)))
 					errs() << *P << ", ";
 				errs() << "]\n";
 				errs() << "Successors: [";
@@ -64,7 +64,7 @@ namespace dataflow{
 			return false;
 		}
 	};
-	
+
 	char Printer::ID = 2;
 	static RegisterPass<Printer> X("Printer", "Print information about instructions in each function.",
 											false /* Only looks at CFG */,

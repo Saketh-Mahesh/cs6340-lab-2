@@ -12,14 +12,14 @@
  * or edited. Removing it will be considered an academic integrity issue.
  *
  * We do grant permission to share solutions privately with non-students such
- * as potential employers as long as this header remains in full. However, 
+ * as potential employers as long as this header remains in full. However,
  * sharing with other current or future students or using a medium to share
- * where the code is widely available on the internet is prohibited and 
+ * where the code is widely available on the internet is prohibited and
  * subject to being investigated as a GT honor code violation.
- * Please respect the intellectual ownership of the course materials 
- * (including exam keys, project requirements, etc.) and do not distribute them 
- * to anyone not enrolled in the class. Use of any previous semester course 
- * materials, such as tests, quizzes, homework, projects, videos, and any other 
+ * Please respect the intellectual ownership of the course materials
+ * (including exam keys, project requirements, etc.) and do not distribute them
+ * to anyone not enrolled in the class. Use of any previous semester course
+ * materials, such as tests, quizzes, homework, projects, videos, and any other
  * coursework, is prohibited in this course. */
 
 #include "AnalysisStrategy.h"
@@ -38,8 +38,41 @@ namespace dataflow {
 			 * either Modified or Unmodified as appropriate.  If you are not using the result, return
 			 * NotApplicable.
 			 */
+
+			void constructInMap(Instruction* current) {
+				std::vector<Instruction*> predecessors = getPredecessors(current);
+				for (Instruction* predecessor : predecessors) {
+					SetVector<Value*>* predecessor_out = outMap[predecessor];
+					if (predecessor_out) {
+						inMap[current]->insert(predecessor_out->begin(), predecessor_out->end());
+					}
+				}
+			}
+
+			void constructOutMap(Instruction* current) {
+				if (isDef(current)) {
+					outMap[current]->insert(current);
+				}
+				outMap[current]->insert(inMap[current]->begin(), inMap[current]->end());
+			}
+
 			virtual EvaluationResult evaluate(Instruction* current) override {
-				return EvaluationResult::NotApplicable;
+				bool modified = false;
+				size_t inMapBefore = inMap[current]->size();
+				size_t outMapBefore = outMap[current]->size();
+
+				constructInMap(current);
+				if (inMap[current]->size() > inMapBefore)
+					modified = true;
+
+				size_t before = outMap[current]->size();
+				constructOutMap(current);
+
+				if (outMap[current]->size() > outMapBefore) {
+					modified = true;
+				}
+
+				return modified ? EvaluationResult::Modified : EvaluationResult::Unmodified;
 			}
 
 		protected:

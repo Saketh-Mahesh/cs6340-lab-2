@@ -38,12 +38,12 @@ namespace dataflow {
 				bool is_changed = false;
 				for (inst_iterator I = inst_begin(F), E= inst_end(F); I != E; ++I){
 					EvaluationResult result = analysisStrategy->evaluate(&(*I));
-					if (result == Unmodified) {
-						break;
-					}
-					else {
+					if (result == Modified) {
 						is_changed = true;
 					}
+				}
+				if (!is_changed) {
+					break;
 				}
 			}
 		}
